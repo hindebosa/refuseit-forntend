@@ -73,7 +73,7 @@ const DrawerWrapperMobile = styled(Drawer)(
 `
 );
 
-function ApplicationsMessenger() {
+function Products() {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -141,4 +141,4 @@ function ApplicationsMessenger() {
   );
 }
 
-export default ApplicationsMessenger;
+export default Products;

@@ -188,10 +188,10 @@ function SidebarMenu() {
                   disableRipple
                   component={RouterLink}
                   onClick={closeSidebar}
-                  to="/overview"
+                  to="/"
                   startIcon={<DesignServicesTwoToneIcon />}
                 >
-                  Overview
+                Home
                 </Button>
               </ListItem>
             </List>
@@ -212,7 +212,7 @@ function SidebarMenu() {
                   disableRipple
                   component={RouterLink}
                   onClick={closeSidebar}
-                  to="/dashboards/crypto"
+                  to="/management/products"
                   startIcon={<BrightnessLowTwoToneIcon />}
                 >
                   Products
@@ -223,7 +223,7 @@ function SidebarMenu() {
                   disableRipple
                   component={RouterLink}
                   onClick={closeSidebar}
-                  to="/dashboards/messenger"
+                  to="/management/transpoters"
                   startIcon={<MmsTwoToneIcon />}
                 >
                   Transporters

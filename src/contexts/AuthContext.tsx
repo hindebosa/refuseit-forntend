@@ -43,10 +43,9 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const login = async(email:string,hash:string) => {
     const result = await axios.post(
-        "http://localhost:3000/auth/email/login",
+        "http://localhost:3010/auth/email/login",
         {email, hash,}
       );
-console.log(result)
     setUser(result.data.data.user);
     localStorage.setItem('user', JSON.stringify(result.data.data.user));
   };

@@ -8,8 +8,8 @@ import BaseLayout from 'src/layouts/BaseLayout';
 import SuspenseLoader from 'src/components/SuspenseLoader';
 
 import React from 'react';
-import { useNavigate} from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext';
+import Products from './content/applications/Products';
 
 
 
@@ -17,10 +17,11 @@ import { useAuth } from './contexts/AuthContext';
 const withAuthGuard = (WrappedComponent) => {
   return (props) => {
     const { user } = useAuth();
+    console.log(user)
 
     if (!user) {
       // Redirect to login page if user is not authenticated
-      return <Navigate to="/login" />;
+      return <Navigate to="/auth/login" />;
     }
 
     // Render the wrapped component if user is authenticated
@@ -77,9 +78,14 @@ const routes: RouteObject[] = [
         path: '',
         element: <Navigate to="transactions" replace />
       },
+     
       {
-        path: 'transactions',
-        element: <Transactions />
+        path: 'products',
+        element: <Products />
+      },
+      {
+        path: 'transpoters',
+        element: <Products />
       },
       {
         path: 'profile',
