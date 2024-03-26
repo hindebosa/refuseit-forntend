@@ -73,7 +73,7 @@ function AccountBalance() {
         }
       }
     },
-    colors: ['#ff9900', '#1c81c2', '#333', '#5c6ac0'],
+    colors: ['#ff9900', '#1c81c2', ],
     dataLabels: {
       enabled: true,
       formatter: function (val) {
@@ -110,7 +110,7 @@ function AccountBalance() {
     fill: {
       opacity: 1
     },
-    labels: ['Bitcoin', 'Ripple', 'Cardano', 'Ethereum'],
+    labels: [ 'On Sale','Sold'],
     legend: {
       labels: {
         colors: theme.colors.alpha.trueWhite[100]
@@ -125,7 +125,7 @@ function AccountBalance() {
     }
   };
 
-  const chartSeries = [10, 20, 25, 45];
+  const chartSeries = [25, 75];
 
   return (
     <Card>
@@ -142,15 +142,9 @@ function AccountBalance() {
             </Typography>
             <Box>
               <Typography variant="h1" gutterBottom>
-                $54,584.23
+                $0
               </Typography>
-              <Typography
-                variant="h4"
-                fontWeight="normal"
-                color="text.secondary"
-              >
-                1.0045983485234 BTC
-              </Typography>
+             
               <Box
                 display="flex"
                 sx={{
@@ -167,7 +161,7 @@ function AccountBalance() {
                   <TrendingUp fontSize="large" />
                 </AvatarSuccess>
                 <Box>
-                  <Typography variant="h4">+ $3,594.00</Typography>
+                  <Typography variant="h4">+ $0</Typography>
                   <Typography variant="subtitle2" noWrap>
                     this month
                   </Typography>
@@ -177,12 +171,12 @@ function AccountBalance() {
             <Grid container spacing={3}>
               <Grid sm item>
                 <Button fullWidth variant="outlined">
-                  Send
+                  Create Sell
                 </Button>
               </Grid>
               <Grid sm item>
                 <Button fullWidth variant="contained">
-                  Receive
+                  View Transactions
                 </Button>
               </Grid>
             </Grid>
@@ -232,15 +226,12 @@ function AccountBalance() {
                 >
                   <ListItem disableGutters>
                     <ListItemAvatarWrapper>
-                      <img
-                        alt="BTC"
-                        src="/static/images/placeholders/logo/bitcoin.png"
-                      />
+                     
                     </ListItemAvatarWrapper>
                     <ListItemText
-                      primary="BTC"
+                      primary="Sold"
                       primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Bitcoin"
+                      secondary="Sold"
                       secondaryTypographyProps={{
                         variant: 'subtitle2',
                         noWrap: true
@@ -248,22 +239,19 @@ function AccountBalance() {
                     />
                     <Box>
                       <Typography align="right" variant="h4" noWrap>
-                        20%
+                        75%
                       </Typography>
                       <Text color="success">+2.54%</Text>
                     </Box>
                   </ListItem>
                   <ListItem disableGutters>
                     <ListItemAvatarWrapper>
-                      <img
-                        alt="XRP"
-                        src="/static/images/placeholders/logo/ripple.png"
-                      />
+                    
                     </ListItemAvatarWrapper>
                     <ListItemText
-                      primary="XRP"
+                      primary="On Sale"
                       primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Ripple"
+                      secondary="On Sale"
                       secondaryTypographyProps={{
                         variant: 'subtitle2',
                         noWrap: true
@@ -271,55 +259,9 @@ function AccountBalance() {
                     />
                     <Box>
                       <Typography align="right" variant="h4" noWrap>
-                        10%
+                        25%
                       </Typography>
                       <Text color="error">-1.22%</Text>
-                    </Box>
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemAvatarWrapper>
-                      <img
-                        alt="ADA"
-                        src="/static/images/placeholders/logo/cardano.png"
-                      />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary="ADA"
-                      primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Cardano"
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true
-                      }}
-                    />
-                    <Box>
-                      <Typography align="right" variant="h4" noWrap>
-                        40%
-                      </Typography>
-                      <Text color="success">+10.50%</Text>
-                    </Box>
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemAvatarWrapper>
-                      <img
-                        alt="ETH"
-                        src="/static/images/placeholders/logo/ethereum.png"
-                      />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary="ETH"
-                      primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Ethereum"
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true
-                      }}
-                    />
-                    <Box>
-                      <Typography align="right" variant="h4" noWrap>
-                        30%
-                      </Typography>
-                      <Text color="error">-12.38%</Text>
                     </Box>
                   </ListItem>
                 </List>

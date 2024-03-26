@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios'
 
+import { toast } from 'react-toastify';
+
 interface User {
   name: string;
   surname:string;
@@ -11,7 +13,7 @@ interface User {
 }
 interface AuthContextType {
   user: User | null;
-  login: (email:string,password:string) => void;
+  login: (email:string,password:string) => Promise<boolean>;
   logout: () => void;
   signUp:(userData:User)=> void;
 }
@@ -34,6 +36,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
+
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
@@ -46,8 +49,15 @@ export const AuthProvider: React.FC = ({ children }) => {
         "http://localhost:3010/auth/email/login",
         {email, hash,}
       );
-    setUser(result.data.data.user);
-    localStorage.setItem('user', JSON.stringify(result.data.data.user));
+
+       if(result.data.success){
+        setUser(result.data.data.user);
+        localStorage.setItem('user', JSON.stringify(result.data.data.user));
+        toast.success("Successfully login")
+       return   true;
+       }
+       return  false
+
   };
 
   const logout = () => {

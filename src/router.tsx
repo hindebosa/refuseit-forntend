@@ -1,10 +1,8 @@
-import { Suspense, lazy } from 'react';
+import { PropsWithChildren, Suspense, lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import { RouteObject } from 'react-router';
 
 import SidebarLayout from 'src/layouts/SidebarLayout';
-import BaseLayout from 'src/layouts/BaseLayout';
-
 import SuspenseLoader from 'src/components/SuspenseLoader';
 
 import React from 'react';
@@ -12,25 +10,14 @@ import { useAuth } from './contexts/AuthContext';
 import Products from './content/applications/Products';
 
 
+interface AuthGuardProps extends PropsWithChildren<{}>  {
+  element: React.ReactNode;
+}
 
-// Define the authentication guard HOC
-const withAuthGuard = (WrappedComponent) => {
-  return (props) => {
-    const { user } = useAuth();
-    console.log(user)
-
-    if (!user) {
-      // Redirect to login page if user is not authenticated
-      return <Navigate to="/auth/login" />;
-    }
-
-    // Render the wrapped component if user is authenticated
-    return <WrappedComponent {...props} />;
-  };
+const AuthGuard: React.FC<AuthGuardProps> = ({ element }) => {
+  const { user } = useAuth(); 
+  return user ? (element  as React.ReactElement) : <Navigate to="/auth/login" replace />;
 };
-
-// export default withAuthGuard;
-
 
 const Loader = (Component) => (props) =>
   (
@@ -38,8 +25,6 @@ const Loader = (Component) => (props) =>
       <Component {...props} />
     </Suspense>
   );
-
-
 
 const Home = Loader(lazy(() => import('src/content/dashboards/Crypto')));
 
@@ -66,7 +51,7 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/',
-        element: <Home />
+        element:<AuthGuard element={<Home />}/>
       }
     ]
   },

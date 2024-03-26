@@ -9,11 +9,12 @@ import Wallets from './Wallets';
 import AccountSecurity from './AccountSecurity';
 import WatchList from './WatchList';
 
+
 function DashboardCrypto() {
   return (
     <>
       <Helmet>
-        <title>Crypto Dashboard</title>
+        <title>RefuseIt Dashboard</title>
       </Helmet>
       <PageTitleWrapper>
         <PageHeader />
@@ -30,13 +31,13 @@ function DashboardCrypto() {
             <AccountBalance />
           </Grid>
           <Grid item lg={8} xs={12}>
-            <Wallets />
+            {/* <Wallets /> */}
           </Grid>
           <Grid item lg={4} xs={12}>
-            <AccountSecurity />
+            {/* <AccountSecurity /> */}
           </Grid>
           <Grid item xs={12}>
-            <WatchList />
+            {/* <WatchList /> */}
           </Grid>
         </Grid>
       </Container>
@@ -45,4 +46,4 @@ function DashboardCrypto() {
   );
 }
 
-export default DashboardCrypto;
+export default DashboardCrypto

@@ -1,11 +1,13 @@
 import { Typography, Avatar, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useAuth } from 'src/contexts/AuthContext';
 
 function PageHeader() {
-  const user = {
-    name: 'Catherine Pike',
-    avatar: '/static/images/avatars/1.jpg'
-  };
+  const {user}=useAuth()
+  // const user = {
+  //   name: 'Catherine Pike',
+  //   avatar: 
+  // };
   const theme = useTheme();
 
   return (
@@ -19,7 +21,7 @@ function PageHeader() {
           }}
           variant="rounded"
           alt={user.name}
-          src={user.avatar}
+          src='/static/images/avatars/1.jpg'
         />
       </Grid>
       <Grid item>
@@ -27,7 +29,7 @@ function PageHeader() {
           Welcome, {user.name}!
         </Typography>
         <Typography variant="subtitle2">
-          Today is a good day to start trading crypto assets!
+          Today is a good day to start sell refuse
         </Typography>
       </Grid>
     </Grid>

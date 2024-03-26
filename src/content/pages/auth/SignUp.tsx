@@ -11,6 +11,9 @@ import Container from "@mui/material/Container";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
+import { toast } from "react-toastify";
+
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const validationSchema = yup.object({
   email: yup
@@ -47,10 +50,31 @@ const SignUp = () => {
     validationSchema: validationSchema,
     onSubmit: async ({ email, phone, hash, surname, name }) => {
       const result = await axios.post(
-        "http://localhost:3000/auth/email/register",
+        `${apiUrl}/auth/email/register`,
         { email, phone, hash, surname, name }
       );
-      console.log(result);
+  
+     if(result.data.success){
+      await toast.success("Successfully Added User.Please view email",{position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+     });
+     }
+     await toast.error("Error while trying to install",{ position: "top-right",
+     autoClose: 5000,
+     hideProgressBar: false,
+     closeOnClick: true,
+     pauseOnHover: true,
+     draggable: true,
+     progress: undefined,
+     theme: "light",
+    })
+  
     },
   });
 

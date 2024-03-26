@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "src/contexts/AuthContext";
 
 const validationSchema = yup.object({
@@ -26,6 +26,7 @@ const validationSchema = yup.object({
 
 const Login = () => {
 
+  const navigate = useNavigate();
   const {login} = useAuth()
 
   const formik = useFormik({
@@ -35,8 +36,11 @@ const Login = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async ({ email, hash}) => {
-      console.log("hey")
-      await login(email,hash)
+    const result=  await login(email,hash)
+    if(result) navigate("/");
+
+     
+    
     }
   })
 
