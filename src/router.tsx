@@ -26,16 +26,18 @@ const Loader = (Component) => (props) =>
     </Suspense>
   );
 
-const Home = Loader(lazy(() => import('src/content/dashboards/Crypto')));
+const Home = Loader(lazy(() => import('./content/dashboards/Crypto')));
 
-const Transactions = Loader(
-  lazy(() => import('src/content/applications/Transactions'))
-);
-const UserProfile = Loader(
-  lazy(() => import('src/content/applications/Users/profile'))
-);
+// const Transactions = Loader(
+//   lazy(() => import('src/content/applications/Transactions'))
+// );
+
+const AddProducts= Loader(lazy(()=>import("./content/pages/Products/AddProduct")))
+// const UserProfile = Loader(
+//   lazy(() => import('src/content/applications/Users/profile'))
+// );
 const UserSettings = Loader(
-  lazy(() => import('src/content/applications/Users/settings'))
+  lazy(() => import('./content/applications/Users/settings'))
 );
 
 
@@ -52,7 +54,15 @@ const routes: RouteObject[] = [
       {
         path: '/',
         element:<AuthGuard element={<Home />}/>
-      }
+      },
+      {
+        path: 'products',
+        element: <Products />
+      },
+      {
+        path: 'addProducts',
+        element:<AuthGuard element={<AddProducts />}/> 
+      },
     ]
   },
   {
@@ -64,10 +74,7 @@ const routes: RouteObject[] = [
         element: <Navigate to="transactions" replace />
       },
      
-      {
-        path: 'products',
-        element: <Products />
-      },
+      
       {
         path: 'transpoters',
         element: <Products />
@@ -79,10 +86,10 @@ const routes: RouteObject[] = [
             path: '',
             element: <Navigate to="details" replace />
           },
-          {
-            path: 'details',
-            element: <UserProfile />
-          },
+          // {
+          //   path: 'details',
+          //   element: <UserProfile />
+          // },
           {
             path: 'settings',
             element: <UserSettings />
