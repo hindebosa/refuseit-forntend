@@ -1,14 +1,14 @@
-import { useState } from 'react';
+
 
 import { Helmet } from 'react-helmet-async';
-
-import TopBarContent from './TopBarContent';
-import BottomBarContent from './BottomBarContent';
-import SidebarContent from './SidebarContent';
-import ChatContent from './ChatContent';
-import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
-
-import Scrollbar from 'src/components/Scrollbar';
+import * as React from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 import {
   Box,
@@ -16,8 +16,11 @@ import {
   Divider,
   Drawer,
   IconButton,
-  useTheme
+  useTheme,
+  Typography,
+  Button
 } from '@mui/material';
+import { NavLink as RouterLink } from 'react-router-dom';
 
 
 const RootWrapper = styled(Box)(
@@ -26,118 +29,69 @@ const RootWrapper = styled(Box)(
        display: flex;
 `
 );
+function createData(
+  name: string,
+  amount: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
+  return { name, amount, fat, carbs, protein };
+}
 
-const Sidebar = styled(Box)(
-  ({ theme }) => `
-        width: 300px;
-        background: ${theme.colors.alpha.white[100]};
-        border-right: ${theme.colors.alpha.black[10]} solid 1px;
-`
-);
+const rows = [
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+];
 
-const ChatWindow = styled(Box)(
-  () => `
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-`
-);
-
-const ChatTopBar = styled(Box)(
-  ({ theme }) => `
-        background: ${theme.colors.alpha.white[100]};
-        border-bottom: ${theme.colors.alpha.black[10]} solid 1px;
-        padding: ${theme.spacing(2)};
-        align-items: center;
-`
-);
-
-const IconButtonToggle = styled(IconButton)(
-  ({ theme }) => `
-  width: ${theme.spacing(4)};
-  height: ${theme.spacing(4)};
-  background: ${theme.colors.alpha.white[100]};
-`
-);
-
-const DrawerWrapperMobile = styled(Drawer)(
-  () => `
-    width: 340px;
-    flex-shrink: 0;
-
-  & > .MuiPaper-root {
-        width: 340px;
-        z-index: 3;
-  }
-`
-);
 
 function Products() {
-  const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
 
   return (
     <>
       <Helmet>
         <title>Messenger - Applications</title>
       </Helmet>
-      <RootWrapper className="Mui-FixedWrapper">
-        <DrawerWrapperMobile
-          sx={{
-            display: { lg: 'none', xs: 'inline-block' }
-          }}
-          variant="temporary"
-          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-        >
-          <Scrollbar>
-            <SidebarContent />
-          </Scrollbar>
-        </DrawerWrapperMobile>
-        <Sidebar
-          sx={{
-            display: { xs: 'none', lg: 'inline-block' }
-          }}
-        >
-          <Scrollbar>
-            <SidebarContent />
-          </Scrollbar>
-        </Sidebar>
-        <ChatWindow>
-          <ChatTopBar
-            sx={{
-              display: { xs: 'flex', lg: 'inline-block' }
-            }}
-          >
-            <IconButtonToggle
-              sx={{
-                display: { lg: 'none', xs: 'flex' },
-                mr: 2
-              }}
-              color="primary"
-              onClick={handleDrawerToggle}
-              size="small"
-            >
-              <MenuTwoToneIcon />
-            </IconButtonToggle>
-            <TopBarContent />
-          </ChatTopBar>
-          <Box flex={1}>
-            <Scrollbar>
-              <ChatContent />
-            </Scrollbar>
-          </Box>
-          <Divider />
-          <BottomBarContent />
-        </ChatWindow>
-      </RootWrapper>
+      <Box sx={{display:'flex',flexDirection:"column",margin:5}}>
+      <Box sx={{ display: "flex", justifyContent: "space-around" ,marginBottom:2 }}>
+        <Typography sx={{fontSize:23,fontWeight:600,textAlign:"center"}}>All Products</Typography>
+        <Button  disableRipple
+                  component={RouterLink}
+                 
+                  to="/addProducts"sx={{color:"#fff",backgroundColor:"#71db41"}}>Add product</Button>
+      
+      </Box>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell align="right">Amount</TableCell>
+              <TableCell align="right">Available</TableCell>
+              <TableCell align="right">Address</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="right">{row.amount}</TableCell>
+                <TableCell align="right">{row.fat}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      </Box>
+
     </>
   );
 }

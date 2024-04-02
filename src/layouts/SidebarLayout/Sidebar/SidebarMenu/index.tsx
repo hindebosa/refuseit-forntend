@@ -212,7 +212,7 @@ function SidebarMenu() {
                   disableRipple
                   component={RouterLink}
                   onClick={closeSidebar}
-                  to="/management/products"
+                  to="/products"
                   startIcon={<BrightnessLowTwoToneIcon />}
                 >
                   Products
