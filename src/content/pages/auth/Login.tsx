@@ -38,9 +38,6 @@ const Login = () => {
     onSubmit: async ({ email, hash}) => {
     const result=  await login(email,hash)
     if(result) navigate("/");
-
-     
-    
     }
   })
 

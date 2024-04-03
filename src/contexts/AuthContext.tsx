@@ -2,15 +2,9 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios'
 
 import { toast } from 'react-toastify';
+import { User } from 'src/utils/types';
 
-interface User {
-  name: string;
-  surname:string;
-  hash:string;
-  phone:string;
-  email:string;
-  birthdaydate?:string
-}
+
 interface AuthContextType {
   user: User | null;
   login: (email:string,password:string) => Promise<boolean>;
