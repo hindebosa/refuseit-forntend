@@ -23,7 +23,7 @@ export const useAuth = () => {
   return context;
 };
 
-// Create the AuthProvider component
+
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(() => {
     const storedUser = localStorage.getItem('user');
