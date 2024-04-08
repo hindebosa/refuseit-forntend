@@ -16,12 +16,11 @@ import {
   Typography
 } from '@mui/material';
 
-import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone';
 import { styled } from '@mui/material/styles';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
+
 import { useAuth } from 'src/contexts/AuthContext';
 
 const UserBoxButton = styled(Button)(
@@ -61,8 +60,6 @@ const UserBoxDescription = styled(Typography)(
 
 function HeaderUserbox() {
 
- 
-
   const {logout,user}=useAuth()
 
   const ref = useRef<any>(null);
@@ -79,10 +76,10 @@ function HeaderUserbox() {
   return (
     <>
       <UserBoxButton color="secondary" ref={ref} onClick={handleOpen}>
-        <Avatar variant="rounded" alt={user.name} src="/static/images/avatars/1.jpg" />
+        <Avatar variant="rounded" alt={user?.name} src="/static/images/avatars/1.jpg" />
         <Hidden mdDown>
           <UserBoxText>
-            <UserBoxLabel variant="body1">{user.name}</UserBoxLabel>
+            <UserBoxLabel variant="body1">{user?.name}</UserBoxLabel>
           </UserBoxText>
         </Hidden>
         <Hidden smDown>
@@ -103,9 +100,9 @@ function HeaderUserbox() {
         }}
       >
         <MenuUserBox sx={{ minWidth: 210 }} display="flex">
-          <Avatar variant="rounded" alt={user.name} src="/static/images/avatars/1.jpg" />
+          <Avatar variant="rounded" alt={user?.name} src="/static/images/avatars/1.jpg" />
           <UserBoxText>
-            <UserBoxLabel variant="body1">{user.name}</UserBoxLabel>
+            <UserBoxLabel variant="body1">{user?.name}</UserBoxLabel>
           </UserBoxText>
         </MenuUserBox>
         <Divider sx={{ mb: 0 }} />

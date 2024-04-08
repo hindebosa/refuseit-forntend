@@ -24,7 +24,7 @@ const validationSchema = yup.object({
         .required("Amount is required"),
     price: yup
         .string()
-        .min(8, "Price should be of minimum 8 characters length")
+        .min(2, "Price should be of minimum 2 characters length")
         .required("Price is required"),
   
 });
@@ -44,7 +44,6 @@ const AddProduct = () => {
             const results = await geocodeByAddress(value);
             const latLng = await getLatLng(results[0]);
             setCoordinates(latLng);
-            console.log('Coordinates: ', latLng);
         } catch (error) {
             console.error('Error: ', error);
         }
@@ -68,7 +67,7 @@ const AddProduct = () => {
             );
 
             if (result.data.success) {
-                await toast.success("Successfully Added User.Please view email", {
+                await toast.success("Successfully Added a product.", {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
