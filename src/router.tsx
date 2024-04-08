@@ -16,6 +16,7 @@ interface AuthGuardProps extends PropsWithChildren<{}>  {
 
 const AuthGuard: React.FC<AuthGuardProps> = ({ element }) => {
   const { user } = useAuth(); 
+  console.log(user)
   return user ? (element  as React.ReactElement) : <Navigate to="/auth/login" replace />;
 };
 
