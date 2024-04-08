@@ -23,13 +23,13 @@ export const useAuth = () => {
   return context;
 };
 
-// Create the AuthProvider component
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(() => {
     const storedUser = localStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -40,7 +40,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const login = async(email:string,hash:string) => {
     const result = await axios.post(
-        "http://localhost:3010/auth/email/login",
+        `${apiUrl}/auth/email/login`,
         {email, hash,}
       );
 
@@ -51,11 +51,10 @@ export const AuthProvider: React.FC = ({ children }) => {
        return   true;
        }
        return  false
-
   };
 
   const logout = () => {
-    // Perform logout logic, clear user data, etc.
+
     setUser(null);
     localStorage.removeItem('user');
   };
