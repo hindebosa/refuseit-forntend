@@ -23,7 +23,6 @@ export const useAuth = () => {
   return context;
 };
 
-
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(() => {
     const storedUser = localStorage.getItem('user');
@@ -52,11 +51,10 @@ export const AuthProvider: React.FC = ({ children }) => {
        return   true;
        }
        return  false
-
   };
 
   const logout = () => {
-    // Perform logout logic, clear user data, etc.
+
     setUser(null);
     localStorage.removeItem('user');
   };
