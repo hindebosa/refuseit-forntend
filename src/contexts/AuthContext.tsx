@@ -30,6 +30,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -40,7 +41,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const login = async(email:string,hash:string) => {
     const result = await axios.post(
-        "http://localhost:3010/auth/email/login",
+        `${apiUrl}/auth/email/login`,
         {email, hash,}
       );
 
